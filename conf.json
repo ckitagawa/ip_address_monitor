@@ -1,0 +1,6 @@
+{
+  "From": "<origin_email>",
+  "To": ["<recipient 1>", "<recipient 2>", "<etc>"],
+  "usr": "<SMTP username>",
+  "pwd": "<SMTP password>"
+}
