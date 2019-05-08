@@ -39,8 +39,8 @@ def CheckAndUpdateCache(ip, filename='cache.txt'):
     Returns:
       kind of action to take {NO_OP, INFO, ALERT}
     """
+    ret = ALERT
     if os.path.exists(filename):
-        ret = ALERT
         with open(filename) as f:
             old_ip = f.readline()
         if old_ip.rstrip() == ip:
