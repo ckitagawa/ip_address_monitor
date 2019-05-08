@@ -40,18 +40,19 @@ def CheckAndUpdateCache(ip, filename='cache.txt'):
       kind of action to take {NO_OP, INFO, ALERT}
     """
     if os.path.exists(filename):
+        ret = ALERT
         with open(filename) as f:
             old_ip = f.readline()
         if old_ip.rstrip() == ip:
             ot = os.path.getmtime(filename)
             t = time.time()
             if (t - ot) >= REMINDER_THRESHOLD_SECS:
-                return INFO
+                ret = INFO
             else:
                 return NO_OP
     with open(filename, 'w') as f:
         f.write('{}\n'.format(ip))
-    return ALERT
+    return ret
 
 
 def SendMessage(msg, usr, pwd, domain='smtp.gmail.com', port=587):
